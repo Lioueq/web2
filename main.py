@@ -37,6 +37,15 @@ def main():
         db_sess = db_session.create_session()
         db_sess.add(user)
         db_sess.commit()
+    jobs = Jobs()
+    jobs.team_leader = 1
+    jobs.job = 'deployment of residential modules 1 and 2'
+    jobs.work_size = 15
+    jobs.collaborators = '2, 3'
+    jobs.is_finished = False
+    db_sess = db_session.create_session()
+    db_sess.add(jobs)
+    db_sess.commit()
 
 
 if __name__ == '__main__':
