@@ -11,41 +11,14 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 @app.route("/")
 def index():
-    pass
+    db_sess = db_session.create_session()
+    jobs = db_sess.query(Jobs).all()
+    return render_template("index.html", jobs=jobs)
 
 
 def main():
     db_session.global_init("db/mars_explorer.db")
-    d = {
-        'surname': ['Scott', 'Weir', 'Watney', 'Sunders'],
-        'name': ['Ridley', 'Andy', 'Mark', 'Teddy'],
-        'age': [21, 23, 22, 25],
-        'position': ['captain', 'flight engineer', 'flight engineer', 'flight engineer'],
-        'speciality': ['research engineer', 'medic', 'pilot', 'cyber engineer'],
-        'address': ['module_1', 'module_2', 'module_2', 'module_2'],
-        'email': ['scott_chief@mars.org', 'weir_chief@mars.org', 'watney_chief@mars.org', 'sunders_chief@mars.org']
-    }
-    for i in range(4):
-        user = User()
-        user.surname = d['surname'][i]
-        user.name = d['name'][i]
-        user.age = d['age'][i]
-        user.position = d['position'][i]
-        user.speciality = d['speciality'][i]
-        user.address = d['address'][i]
-        user.email = d['email'][i]
-        db_sess = db_session.create_session()
-        db_sess.add(user)
-        db_sess.commit()
-    jobs = Jobs()
-    jobs.team_leader = 1
-    jobs.job = 'deployment of residential modules 1 and 2'
-    jobs.work_size = 15
-    jobs.collaborators = '2, 3'
-    jobs.is_finished = False
-    db_sess = db_session.create_session()
-    db_sess.add(jobs)
-    db_sess.commit()
+    app.run(port=8080)
 
 
 if __name__ == '__main__':
