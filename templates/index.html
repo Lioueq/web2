@@ -3,6 +3,7 @@
 {% block content %}
 <h1 class="middle">Works log</h1>
 {% if current_user.is_authenticated %}
+    <a href="/departments" class="btn btn-secondary">Перейти к списку департаментов</a>
     <a href="/job" class="btn btn-secondary">Добавить работу</a>
 {% endif %}
 <div class="col-md6 border rounded">
@@ -11,11 +12,11 @@
     <table class="table">
         <thead>
         <tr class="table-secondary">
-            <th scope="col">Title of activity</th>
-            <th scope="col">Team leader</th>
-            <th scope="col">Duration</th>
-            <th scope="col">List of collaborators</th>
-            <th scope="col">Is finished</th>
+            <th scope="col">Описание работы</th>
+            <th scope="col">Id руководителя</th>
+            <th scope="col">Объем работы в часах</th>
+            <th scope="col">Список id участников</th>
+            <th scope="col">Работа завершена</th>
         </tr>
         </thead>
         <tbody>
@@ -25,9 +26,9 @@
             <td>{{item.work_size}} hours</td>
             <td>{{item.collaborators}}</td>
             {% if item.is_finished %}
-                <td>Is finished</td>
+                <td>Завершена</td>
             {% else %}
-                <td>Is not finished</td>
+                <td>Не завершена</td>
             {% endif %}
         </tr>
         </tbody>

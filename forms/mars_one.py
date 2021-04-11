@@ -31,3 +31,11 @@ class AddJobForm(FlaskForm):
     collaborators = StringField('Список id участников', validators=[DataRequired()])
     is_finished = BooleanField('Работа завершена')
     submit = SubmitField('Сохранить')
+
+
+class AddDepartmentForm(FlaskForm):
+    title = StringField('Название департамента', validators=[DataRequired()])
+    chief = IntegerField('Id шефа', validators=[DataRequired()])
+    members = StringField('Список id участников', validators=[DataRequired()])
+    email = EmailField('Почта департамента', validators=[DataRequired()])
+    submit = SubmitField('Сохранить')
