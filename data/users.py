@@ -13,6 +13,10 @@ class User(SqlAlchemyBase, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
 
+    def __repr__(self):
+        return f'{self.id}|{self.surname}|{self.name}|{self.age}|{self.position}|' \
+               f'{self.speciality}|{self.address}|{self.email}|{self.hashed_password}'
+
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
