@@ -5,6 +5,7 @@ from data.users import User
 from data.jobs import Jobs
 from data.departments import Department
 from forms.mars_one import RegisterForm, LoginForm, AddJobForm, AddDepartmentForm
+import os
 
 
 app = Flask(__name__)
@@ -225,7 +226,8 @@ def department_delete(id):
 
 def main():
     db_session.global_init("db/mars_explorer.db")
-    app.run(port=8080)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 if __name__ == '__main__':
